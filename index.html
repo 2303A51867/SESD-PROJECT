@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>MediAssist — Rural Clinic Network</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS (map) -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-sA+gQfN8mY6o2C2M3sE3Nf5f2k6cJXQG2oTMXv1V2vM=" crossorigin=""/>
+
+  <!-- Local stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1j8kBf+k6b8iFM3h0k3nSJGxQm0v6Q+R7D5m0zAI=" crossorigin=""></script>
+
+</head>
+<body>
+  <header class="topbar">
+    <div class="container header-grid">
+      <div>
+        <h1 id="site-title">MediAssist</h1>
+        <p class="tagline">Rural clinics — doctors, timings & contact (Telangana)</p>
+      </div>
+      <div class="controls">
+        <input id="search" aria-label="Search doctors" placeholder="Search name or specialty..." />
+        <select id="specialtyFilter" aria-label="Filter by specialty">
+          <option value="">All specialties</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <main class="container" id="main" role="main">
+    <section aria-labelledby="list-heading" class="panel">
+      <h2 id="list-heading">Doctors & Clinics</h2>
+      <div class="list-grid" id="doctorList" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Visualisations</h2>
+      <div class="viz-grid">
+        <div class="card">
+          <h3>Doctors by Specialty</h3>
+          <canvas id="specialtyChart" width="400" height="240" aria-label="Bar chart showing number of doctors in each specialty" role="img"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Clinic Locations</h3>
+          <div id="map" tabindex="0" aria-label="Map showing clinic locations"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel small">
+      <h2>How to make an appointment</h2>
+      <ol>
+        <li>Search doctor or select specialty.</li>
+        <li>Call the phone number listed to book.</li>
+        <li>If tele-consultation available, ask the clinic when calling.</li>
+      </ol>
+    </section>
+
+    <footer class="panel footer">
+      <small>© <span id="year"></span> MediAssist — Designed for rural accessibility</small>
+    </footer>
+  </main>
+
+  <!-- Doctor detail modal (hidden by default) -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal-content" role="document">
+      <button id="closeModal" class="close-btn" aria-label="Close dialog">&times;</button>
+      <div id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
